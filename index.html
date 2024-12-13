@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeHub - Your Ultimate Anime Store</title>
+    <link rel="icon" href="./assets/logo.jpg" type="image/jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    // Function to validate form i attempted multiple time to make it work. but it was never implemented
+    // ignore or please fix it
+    function validateForm() {
+        let isValid = true;
+        const form = document.forms["orderForm"];
+
+        const name = form["customerName"].value.trim();
+        const address = form["customerAddress"].value.trim();
+        const region = form["customerRegion"].value;
+        const email = form["customerEmail"].value.trim();
+        const phone = form["customerPhoneNo"].value.trim();
+        const packageNo = form["packageNo"].value;
+
+        document.querySelectorAll('.error-message').forEach(e => e.remove());
+
+        if (!name) {
+            showError(form["customerName"], "Name is required.");
+            isValid = false;
+        }
+
+        if (!address) {
+            showError(form["customerAddress"], "Address is required.");
+            isValid = false;
+        }
+
+        if (!region) {
+            showError(form["customerRegion"], "Region is required.");
+            isValid = false;
+        }
+
+        if (!email || !validateEmail(email)) {
+            showError(form["customerEmail"], "A valid email is required.");
+            isValid = false;
+        }
+
+        if (!phone || !/^[0-9]+$/.test(phone)) {
+            showError(form["customerPhoneNo"], "A valid phone number is required.");
+            isValid = false;
+        }
+
+        if (!packageNo) {
+            showError(form["packageNo"], "Package selection is required.");
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    function showError(input, message) {
+        const error = document.createElement('div');
+        error.className = 'error-message';
+        error.textContent = message;
+        input.parentNode.appendChild(error);
+    }
+
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+</script>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">
+                <img src="./assets/logo.jpg" alt="AnimeHub Logo" class="w-10 h-10 rounded-full">
+                <span>AnimeHub</span>
+            </div>
+            <div class="nav-links">
+                <a href="#hero">Home</a>
+                <a href="#packages">Packages</a>
+                <a href="#store">Store</a>
+                <a href="#corporate">Corporate</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="menu-button">☰</button>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero">
+        <!-- Slides will be inserted here by JavaScript at the buttom-->
+    </section>
+
+    <section id="packages" class="packages">
+        <h2 class="section-title">Anniversary Packages</h2>
+        <div class="packages-grid">
+            <!-- Package cards will be inserted here by JavaScript -->
+        </div>
+    </section>
+
+    <section id="store" class="py-20 bg-slate-800 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+          <img
+            src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1920"
+            alt="Background"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <h2 class="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+            Visit Our Store
+          </h2>
+      
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- TODO: Add correct store information -->
+            <!-- Store Information -->
+            <div class="space-y-8">
+              <!-- Store Hours -->
+              <div class="flex items-start space-x-4">
+                <i class="fas fa-clock w-6 h-6 text-pink-500 flex-shrink-0"></i>
+                <div>
+                  <h3 class="text-xl font-semibold text-white mb-2">Store Hours</h3>
+                  <ul class="text-gray-300 space-y-1">
+                    <li>Monday - Friday: 10:00 AM - 9:00 PM</li>
+                    <li>Saturday: 9:00 AM - 10:00 PM</li>
+                    <li>Sunday: 11:00 AM - 7:00 PM</li>
+                  </ul>
+                </div>
+              </div>
+      
+              <!-- Location -->
+              <div class="flex items-start space-x-4">
+                <i class="fas fa-map-marker-alt w-6 h-6 text-pink-500 flex-shrink-0"></i>
+                <div>
+                  <h3 class="text-xl font-semibold text-white mb-2">Location</h3>
+                  <p class="text-gray-300">
+                    127 Sheriff Street<br />
+                    Georgetown <br />
+                    Guyana
+                  </p>
+                </div>
+              </div>
+      
+              <!-- Phone -->
+              <div class="flex items-start space-x-4">
+                <i class="fas fa-phone-alt w-6 h-6 text-pink-500 flex-shrink-0"></i>
+                <div>
+                  <h3 class="text-xl font-semibold text-white mb-2">Phone</h3>
+                  <p class="text-gray-300">+592 656-7890</p>
+                </div>
+              </div>
+      
+              <!-- Email -->
+              <div class="flex items-start space-x-4">
+                <i class="fas fa-envelope w-6 h-6 text-pink-500 flex-shrink-0"></i>
+                <div>
+                  <h3 class="text-xl font-semibold text-white mb-2">Email</h3>
+                  <p class="text-gray-300">info@animehub.com</p>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Store Image -->
+            <div class="bg-slate-700 rounded-lg overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800"
+                alt="Store Front"
+                class="w-full h-96 object-cover"
+              />
+            </div>
+          </div>
+        </div>
+    </section>      
+
+    <section id="corporate" class="corporate">
+        <div class="corporate-content">
+            <h2 class="section-title">About AnimeHub</h2>
+            <div class="corporate-card">
+                <p>Founded in 2023, AnimeHub has quickly become the premier destination for anime enthusiasts seeking high-quality merchandise and collectibles. Our mission is to bridge the gap between Japanese pop culture and fans worldwide, providing authentic products and an immersive shopping experience.</p>
+                <p>We take pride in curating only the finest anime merchandise, working directly with Japanese suppliers and artists to ensure authenticity and quality. Our team of passionate anime fans carefully selects each item in our collection, ensuring that we offer something special for every type of fan.</p>
+                <p>At AnimeHub, we believe in creating a community where fans can share their love for anime culture. Through our events, exclusive collections, and dedication to customer service, we strive to make every visit to our store a memorable experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <form class="contact-form">
+            <div class="form-group">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Message</label>
+                <textarea class="form-textarea" rows="6" required></textarea>
+            </div>
+            <button type="submit" class="cta-button">Send Message</button>
+        </form>
+    </section>
+    
+    <section id="packages" class="py-20 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+            Order Your Package
+          </h2>
+  
+          <form id="orderForm" class="max-w-2xl mx-auto bg-slate-800 p-8 rounded-lg">
+            <div class="space-y-6">
+              <div>
+                <label class="block text-gray-300 mb-2">Select Package</label>
+                <select 
+                  name="packageNo" 
+                  class="w-full bg-slate-700 text-white rounded-md px-4 py-2 focus:ring-2 focus:ring-pink-500"
+                  required
+                >
+                  <option value="">Choose a package...</option>
+                  <option value="0">Otaku Starter - $49.99</option>
+                  <option value="1">Collector's Dream - $99.99</option>
+                  <option value="2">Ultimate Fan - $149.99</option>
+                  <option value="3">Digital Deluxe - $79.99</option>
+                  <option value="4">Cosplay Special - $199.99</option>
+                </select>
+              </div>
+  
+              <div>
+                <label class="block text-gray-300 mb-2">Full Name</label>
+                <input
+                  type="text"
+                  name="customerName"
+                  class="w-full bg-slate-700 text-white rounded-md px-4 py-2 focus:ring-2 focus:ring-pink-500"
+                  required
+                />
+              </div>
+  
+              <div>
+                <label class="block text-gray-300 mb-2">Email</label>
+                <input
+                  type="email"
+                  name="customerEmail"
+                  class="w-full bg-slate-700 text-white rounded-md px-4 py-2 focus:ring-2 focus:ring-pink-500"
+                  required
+                />
+              </div>
+  
+              <div>
+                <label class="block text-gray-300 mb-2">Phone Number</label>
+                <input
+                  type="tel"
+                  name="customerPhoneNo"
+                  class="w-full bg-slate-700 text-white rounded-md px-4 py-2 focus:ring-2 focus:ring-pink-500"
+                  required
+                />
+              </div>
+  
+              <div>
+                <label class="block text-gray-300 mb-2">Delivery Address</label>
+                <textarea
+                  name="customerAddress"
+                  class="w-full bg-slate-700 text-white rounded-md px-4 py-2 focus:ring-2 focus:ring-pink-500"
+                  rows="3"
+                  required
+                ></textarea>
+              </div>
+  
+              <div>
+                <label class="block text-gray-300 mb-2">Shipping Region</label>
+                <select 
+                  name="customerRegion" 
+                  class="w-full bg-slate-700 text-white rounded-md px-4 py-2 focus:ring-2 focus:ring-pink-500"
+                  required
+                >
+                  <option value="">Select region...</option>
+                  <option value="NorthAmerica">North America ($150)</option>
+                  <option value="Europe">Europe ($200)</option>
+                  <option value="Asia">Asia ($100)</option>
+                  <option value="Caribbean">Caribbean ($50)</option>
+                  <option value="SouthAmerica">South America ($175)</option>
+                </select>
+              </div>
+  
+              <button
+                type="submit"
+                class="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 rounded-md font-semibold hover:opacity-90 transition-opacity flex items-center justify-center space-x-2"
+              >
+                Place Order
+              </button>
+            </div>
+          </form>
+  
+          <div id="orderResponse" class="mt-6 text-center text-white hidden">
+            <!-- Response message will be displayed here -->
+          </div>
+        </div>
+      </section>
+    <footer class="bg-slate-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col items-center">
+            <!-- Social Media Icons -->
+            <div class="flex space-x-6 mb-8">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-400 hover:text-pink-500 transition-colors"
+              >
+                <i class="fab fa-facebook-f w-6 h-6"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/animehub_gy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-400 hover:text-pink-500 transition-colors"
+              >
+                <i class="fab fa-instagram w-6 h-6"></i>
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-400 hover:text-pink-500 transition-colors"
+              >
+                <i class="fab fa-twitter w-6 h-6"></i>
+              </a>
+            </div>
+      
+            <button
+              
+              class="text-gray-400 hover:text-white transition-colors mb-6"
+            >
+              <!-- Please replace with url to the flask app for it to work and remeber to change the env vars i removed mine -->
+              <a href="http://localhost:5173/" target="_self">View Full Site</a>
+            </button>
+      
+            <!-- Footer Text -->
+            <p class="text-gray-500 text-center">
+              © <script>document.write(new Date().getFullYear());</script> AnimeHub. All rights reserved.
+            </p>
+          </div>
+        </div>
+    </footer>
+      
+
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(e.target);
+        const responseDiv = document.getElementById('orderResponse');
+        
+        try {
+          const response = await fetch('http://127.0.0.1:5000/order/new', {
+            method: 'POST',
+            body: formData
+          });
+          console.log(response);
+          const result = await response.text();
+          
+          responseDiv.textContent = result;
+          responseDiv.classList.remove('hidden');
+          responseDiv.classList.add('bg-green-500', 'p-4', 'rounded-lg');
+          
+          // Clear form after successful submission
+          e.target.reset();
+          
+          // Scroll to response
+          responseDiv.scrollIntoView({ behavior: 'smooth' });
+        } catch (error) {
+          responseDiv.textContent = 'An error occurred while placing your order. Please try again.';
+          responseDiv.classList.remove('hidden');
+          responseDiv.classList.add('bg-red-500', 'p-4', 'rounded-lg');
+        }
+      });
+        // Hero Slider
+        const slides = [
+            {
+                image: "https://w0.peakpx.com/wallpaper/468/979/HD-wallpaper-anime-landscape-falling-stars-sunset-clouds-anime-girl-scenic-anime.jpg",
+                title: "One Year of Anime Love",
+                subtitle: "Join us in celebrating our first anniversary with exclusive deals!"
+            },
+            {
+                image: "https://wallpapers.com/images/featured/beautiful-anime-6pxtfixyn3ku7622.jpg",
+                title: "Exclusive Anniversary Deals",
+                subtitle: "Limited time offers on your favorite anime merchandise"
+            },
+            {
+                image: "https://img.freepik.com/free-photo/japan-background-digital-art_23-2151546131.jpg?semt=ais_hybrid",
+                title: "Your Anime Haven Awaits",
+                subtitle: "Discover our curated collection of premium anime goods"
+            }
+        ];
+
+        const packages = [
+            {
+                name: "Anniversary Comic Book ",
+                price: 400,
+                description: "A limited edition comic book, perfect for beginners! Includes manga volume, exclusive poster, and 2 random figurines",
+                image: "https://i.pinimg.com/564x/6c/35/f7/6c35f7525ef0457c906748f856289189.jpg"
+            },
+            {
+                name: "Comic Book Package",
+                price: 800,
+                description: "Multiple comic books, exclusive poster, and 2 random figurines",
+                image: "https://asia.sega.com/kimetsu_hinokami/en/assets/img/sub/news/210625_02.jpg"
+            },
+            {
+                name: "Anniversary Anime Package",
+                price: 3000,
+                description: "Deluxe Package A selection of limited print comic books",
+                image: "https://img0-placeit-net.s3-accelerate.amazonaws.com/uploads/stage/stage_image/158696/optimized_product_thumb_stage.jpg"
+            }
+        ];
+
+        // Initialize hero slider
+        const heroSection = document.querySelector('.hero');
+        let currentSlide = 0;
+
+        function createSlides() {
+            slides.forEach((slide, index) => {
+                const slideElement = document.createElement('div');
+                slideElement.className = `slide ${index === 0 ? 'active' : ''}`;
+                slideElement.innerHTML = `
+                    <img src="${slide.image}" alt="${slide.title}" class="slide-image">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <h1 class="slide-title">${slide.title}</h1>
+                        <p class="slide-subtitle">${slide.subtitle}</p>
+                        <button class="cta-button">Shop Now!</button>
+                    </div>
+                `;
+                heroSection.appendChild(slideElement);
+            });
+
+            // Create slide navigation
+            const slideNav = document.createElement('div');
+            slideNav.className = 'slide-nav';
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = `slide-nav-dot ${index === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => goToSlide(index));
+                slideNav.appendChild(dot);
+            });
+            heroSection.appendChild(slideNav);
+        }
+
+        function goToSlide(index) {
+            const slideElements = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slide-nav-dot');
+            
+            slideElements[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            
+            currentSlide = index;
+            
+            slideElements[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            goToSlide((currentSlide + 1) % slides.length);
+        }
+
+        function createPackageCards() {
+            const packagesGrid = document.querySelector('.packages-grid');
+            packages.forEach(pkg => {
+                const card = document.createElement('div');
+                card.className = 'package-card';
+                card.innerHTML = `
+                    <img src="${pkg.image}" alt="${pkg.name}" class="package-image">
+                    <div class="package-content anime-package" data-package-name="${pkg.name}">
+                        <h3 class="package-title">${pkg.name}</h3>
+                        <p class="package-description">${pkg.description}</p>
+                        <p class="package-price">$${pkg.price}</p>
+                    </div>
+                `;
+                packagesGrid.appendChild(card);
+            });
+        }
+
+        
+
+        // Mobile menu toggle
+        const menuButton = document.querySelector('.menu-button');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuButton.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            createSlides();
+            createPackageCards();
+            setInterval(nextSlide, 5000);
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Handle form submission
+            console.log('Form submitted');
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+        const orderModal = document.getElementById('orderModal');
+        const closeModal = document.getElementById('closeModal');
+        const orderForm = document.getElementById('orderForm');
+
+        // Function to close modal
+        closeModal.addEventListener('click', () => {
+            orderModal.style.display = 'none';
+        });
+
+        // Handle form submission
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Order placed successfully!');
+            orderModal.style.display = 'none';
+            orderForm.reset();
+        });
+
+        // Close modal on clicking outside of the modal content
+        window.addEventListener('click', (e) => {
+            if (e.target === orderModal) {
+            orderModal.style.display = 'none';
+            }
+        });
+        });
+    </script>
+</body>
+</html>
