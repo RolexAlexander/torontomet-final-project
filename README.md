@@ -9,10 +9,10 @@ AnimeHub is a simple single-page website developed with Flask to facilitate prod
 - **Tailwind CSS**: Styling framework used for responsiveness and layout.
 
 ## Live Version:
-- [AnimeHub Landing Page](https://rolexalexander.github.io/AnimeHub)
+- [AnimeHub Landing Page](https://rolexalexander.github.io/torontomet-final-project)
 
 ## Repository:
-- [GitHub Repo](https://github.com/RolexAlexander/AnimeHub)
+- [GitHub Repo](https://github.com/RolexAlexander/torontomet-final-project.git)
 
 ## Setup Instructions:
 1. Rename `env.example` to `.env` and fill in the required MongoDB URI and other environment variables.
